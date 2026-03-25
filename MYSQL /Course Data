@@ -1,0 +1,145 @@
+Enter password: *********
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 23
+Server version: 8.0.45 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2026, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| student            |
+| sys                |
++--------------------+
+5 rows in set (0.00 sec)
+
+mysql> use student;
+Database changed
+mysql> create table course(courseId int PRIMARY KEY, name varchar(50),fees int);
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> desc course;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| courseId | int         | NO   | PRI | NULL    |       |
+| name     | varchar(50) | YES  |     | NULL    |       |
+| fees     | int         | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+mysql> insert into course values(12,"Java",2500);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from course;
++----------+------+------+
+| courseId | name | fees |
++----------+------+------+
+|       12 | Java | 2500 |
++----------+------+------+
+1 row in set (0.00 sec)
+
+mysql> insert into course values(13,"Python",2500);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into course values(14,"C++",30000);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into course values(15,"SAP",30000);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into course values(16,"Design",35000);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from course;
++----------+--------+-------+
+| courseId | name   | fees  |
++----------+--------+-------+
+|       12 | Java   |  2500 |
+|       13 | Python |  2500 |
+|       14 | C++    | 30000 |
+|       15 | SAP    | 30000 |
+|       16 | Design | 35000 |
++----------+--------+-------+
+5 rows in set (0.00 sec)
+
+mysql> update course set fees=25000 where courseId=12;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from course;
++----------+--------+-------+
+| courseId | name   | fees  |
++----------+--------+-------+
+|       12 | Java   | 25000 |
+|       13 | Python |  2500 |
+|       14 | C++    | 30000 |
+|       15 | SAP    | 30000 |
+|       16 | Design | 35000 |
++----------+--------+-------+
+5 rows in set (0.00 sec)
+
+mysql> update course set fees=40000 where courseId=13;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from course;
++----------+--------+-------+
+| courseId | name   | fees  |
++----------+--------+-------+
+|       12 | Java   | 25000 |
+|       13 | Python | 40000 |
+|       14 | C++    | 30000 |
+|       15 | SAP    | 30000 |
+|       16 | Design | 35000 |
++----------+--------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select * from course where fees = 30000;
++----------+------+-------+
+| courseId | name | fees  |
++----------+------+-------+
+|       14 | C++  | 30000 |
+|       15 | SAP  | 30000 |
++----------+------+-------+
+2 rows in set (0.00 sec)
+
+mysql> select * from course where NOT fees = 30000;
++----------+--------+-------+
+| courseId | name   | fees  |
++----------+--------+-------+
+|       12 | Java   | 25000 |
+|       13 | Python | 40000 |
+|       16 | Design | 35000 |
++----------+--------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select * from course where fees = 30000 AND courseId = 15;
++----------+------+-------+
+| courseId | name | fees  |
++----------+------+-------+
+|       15 | SAP  | 30000 |
++----------+------+-------+
+1 row in set (0.00 sec)
+
+mysql> select * from course where fees = 30000 OR courseId = 16;
++----------+--------+-------+
+| courseId | name   | fees  |
++----------+--------+-------+
+|       14 | C++    | 30000 |
+|       15 | SAP    | 30000 |
+|       16 | Design | 35000 |
++----------+--------+-------+
+3 rows in set (0.00 sec)
+
+mysql>
