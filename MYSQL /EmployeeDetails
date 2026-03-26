@@ -1,0 +1,346 @@
+Enter password: *********
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 8.0.45 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2026, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| student            |
+| sys                |
++--------------------+
+5 rows in set (0.04 sec)
+
+mysql> use student;
+Database changed
+mysql> create database empData(empId int PRIMARY KEY, name varchar(50) NOT NULL, city varchar(50),salary bigInt ,email varchar(70));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(empId int PRIMARY KEY, name varchar(50) NOT NULL, city varchar(50),salary bigIn' at line 1
+mysql> create database empData(empId int PRIMARY KEY, name varchar(50) NOT NULL, city varchar(50),salary bigInt ,email varchar(70));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(empId int PRIMARY KEY, name varchar(50) NOT NULL, city varchar(50),salary bigIn' at line 1
+mysql> create table empData(empId int PRIMARY KEY, name varchar(50) NOT NULL, city varchar(50),salary bigInt ,email varchar(70));
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> show table;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> show tables;
++-------------------+
+| Tables_in_student |
++-------------------+
+| course            |
+| customer          |
+| empdata           |
+| employee          |
+| employeee         |
+| student           |
++-------------------+
+6 rows in set (0.01 sec)
+
+mysql> dec empData;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'dec empData' at line 1
+mysql> dsc empData;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'dsc empData' at line 1
+mysql> desc empData;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| empId  | int         | NO   | PRI | NULL    |       |
+| name   | varchar(50) | NO   |     | NULL    |       |
+| city   | varchar(50) | YES  |     | NULL    |       |
+| salary | bigint      | YES  |     | NULL    |       |
+| email  | varchar(70) | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+
+mysql> insert into empData (empId int PRIMARY KEY ,name varchar(50),city varchar(50),salary bigInt,email varchar(70)) values(1,"sonal","Solapur",42000,"sonal@gmai.com");
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'int PRIMARY KEY ,name varchar(50),city varchar(50),salary bigInt,email varchar(7' at line 1
+mysql> insert into empData (empId,name,city,salary,email) values(1,"sonal","Solapur",42000,"sonal@gmai.com");
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select * from empData;
++-------+-------+---------+--------+----------------+
+| empId | name  | city    | salary | email          |
++-------+-------+---------+--------+----------------+
+|     1 | sonal | Solapur |  42000 | sonal@gmai.com |
++-------+-------+---------+--------+----------------+
+1 row in set (0.00 sec)
+
+mysql> insert into empData (empId,name,city,salary,email) values(2,"komal","Kolhapur",42000,"komal@gmai.com");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into empData (empId,name,city,salary,email) values(3,"kajal","Khanapur",45000,"kajal@gmai.com");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into empData (empId,name,city,salary,email) values(4,"hiral, "Jaipur",50000,"hiral@gmai.com");
+    "> insert into empData (empId,name,city,salary,email) values(5,"bhakti", "gujrat",55000,"bhakti@gmai.com");
+    "> insert into empData (empId,name,city,salary,email) values(5,"bhakti", "gujrat",55000,"bhakti@gmai.com");
+    "> insert into empData (empId,name,city,salary,email) values(4,"hiral, "Jaipur",50000,"hiral@gmai.com");
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Jaipur",50000,"hiral@gmai.com");
+insert into empData (empId,name,city,salary,ema' at line 1
+mysql> insert into empData (empId,name,city,salary,email) values(4,"hiral", "Jaipur",50000,"hiral@gmai.com");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into empData (empId,name,city,salary,email) values(5,"bhakti", "gujrat",55000,"bhakti@gmai.com");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into empData (empId,name,city,salary,email) values(6,"sakshi", "Karntaka",60000,"sakshi@gmai.com");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into empData (empId,name,city,salary,email) values(7,"soniya", "satara",65000,"soniya@gmai.com");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into empData (empId,name,city,salary,email) values(8,"sanika", "sangli",70000,"sanika@gmai.com");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into empData (empId,name,city,salary,email) values(9,"sejal", "pune",75000,"sejal@gmai.com");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into empData (empId,name,city,salary,email) values(10,"sanaya", "pune",80000,"sanaya@gmai.com");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from empData;
++-------+--------+----------+--------+-----------------+
+| empId | name   | city     | salary | email           |
++-------+--------+----------+--------+-----------------+
+|     1 | sonal  | Solapur  |  42000 | sonal@gmai.com  |
+|     2 | komal  | Kolhapur |  42000 | komal@gmai.com  |
+|     3 | kajal  | Khanapur |  45000 | kajal@gmai.com  |
+|     4 | hiral  | Jaipur   |  50000 | hiral@gmai.com  |
+|     5 | bhakti | gujrat   |  55000 | bhakti@gmai.com |
+|     6 | sakshi | Karntaka |  60000 | sakshi@gmai.com |
+|     7 | soniya | satara   |  65000 | soniya@gmai.com |
+|     8 | sanika | sangli   |  70000 | sanika@gmai.com |
+|     9 | sejal  | pune     |  75000 | sejal@gmai.com  |
+|    10 | sanaya | pune     |  80000 | sanaya@gmai.com |
++-------+--------+----------+--------+-----------------+
+10 rows in set (0.00 sec)
+
+mysql> select * from empData ADD table Extra;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ADD table Extra' at line 1
+mysql> alter table empData  ADD adrress varchar (50);
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from empData;
++-------+--------+----------+--------+-----------------+---------+
+| empId | name   | city     | salary | email           | adrress |
++-------+--------+----------+--------+-----------------+---------+
+|     1 | sonal  | Solapur  |  42000 | sonal@gmai.com  | NULL    |
+|     2 | komal  | Kolhapur |  42000 | komal@gmai.com  | NULL    |
+|     3 | kajal  | Khanapur |  45000 | kajal@gmai.com  | NULL    |
+|     4 | hiral  | Jaipur   |  50000 | hiral@gmai.com  | NULL    |
+|     5 | bhakti | gujrat   |  55000 | bhakti@gmai.com | NULL    |
+|     6 | sakshi | Karntaka |  60000 | sakshi@gmai.com | NULL    |
+|     7 | soniya | satara   |  65000 | soniya@gmai.com | NULL    |
+|     8 | sanika | sangli   |  70000 | sanika@gmai.com | NULL    |
+|     9 | sejal  | pune     |  75000 | sejal@gmai.com  | NULL    |
+|    10 | sanaya | pune     |  80000 | sanaya@gmai.com | NULL    |
++-------+--------+----------+--------+-----------------+---------+
+10 rows in set (0.00 sec)
+
+mysql> alter table empData DROP column adrress;
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from empData;
++-------+--------+----------+--------+-----------------+
+| empId | name   | city     | salary | email           |
++-------+--------+----------+--------+-----------------+
+|     1 | sonal  | Solapur  |  42000 | sonal@gmai.com  |
+|     2 | komal  | Kolhapur |  42000 | komal@gmai.com  |
+|     3 | kajal  | Khanapur |  45000 | kajal@gmai.com  |
+|     4 | hiral  | Jaipur   |  50000 | hiral@gmai.com  |
+|     5 | bhakti | gujrat   |  55000 | bhakti@gmai.com |
+|     6 | sakshi | Karntaka |  60000 | sakshi@gmai.com |
+|     7 | soniya | satara   |  65000 | soniya@gmai.com |
+|     8 | sanika | sangli   |  70000 | sanika@gmai.com |
+|     9 | sejal  | pune     |  75000 | sejal@gmai.com  |
+|    10 | sanaya | pune     |  80000 | sanaya@gmai.com |
++-------+--------+----------+--------+-----------------+
+10 rows in set (0.00 sec)
+
+mysql> alter table empData RENAME email to gmail;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'to gmail' at line 1
+mysql> alter table empData RENAME column email to gmail;
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from empData;
++-------+--------+----------+--------+-----------------+
+| empId | name   | city     | salary | gmail           |
++-------+--------+----------+--------+-----------------+
+|     1 | sonal  | Solapur  |  42000 | sonal@gmai.com  |
+|     2 | komal  | Kolhapur |  42000 | komal@gmai.com  |
+|     3 | kajal  | Khanapur |  45000 | kajal@gmai.com  |
+|     4 | hiral  | Jaipur   |  50000 | hiral@gmai.com  |
+|     5 | bhakti | gujrat   |  55000 | bhakti@gmai.com |
+|     6 | sakshi | Karntaka |  60000 | sakshi@gmai.com |
+|     7 | soniya | satara   |  65000 | soniya@gmai.com |
+|     8 | sanika | sangli   |  70000 | sanika@gmai.com |
+|     9 | sejal  | pune     |  75000 | sejal@gmai.com  |
+|    10 | sanaya | pune     |  80000 | sanaya@gmai.com |
++-------+--------+----------+--------+-----------------+
+10 rows in set (0.00 sec)
+
+mysql> alter table empData RENAME to EmployeeDetails;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> show tables;
++-------------------+
+| Tables_in_student |
++-------------------+
+| course            |
+| customer          |
+| employee          |
+| employeedetails   |
+| employeee         |
+| student           |
++-------------------+
+6 rows in set (0.00 sec)
+
+mysql> alter table empData MODIFY column city varchar (60);
+ERROR 1146 (42S02): Table 'student.empdata' doesn't exist
+mysql> alter table empData MODIFY column city varchar(60);
+ERROR 1146 (42S02): Table 'student.empdata' doesn't exist
+mysql> alter table empData  ADD column mobileNo int;
+ERROR 1146 (42S02): Table 'student.empdata' doesn't exist
+mysql> alter table empData  ADD mobNo int;
+ERROR 1146 (42S02): Table 'student.empdata' doesn't exist
+mysql> alter table EmployeeDetails ADD mobNo int;
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from employeeDetails;
++-------+--------+----------+--------+-----------------+-------+
+| empId | name   | city     | salary | gmail           | mobNo |
++-------+--------+----------+--------+-----------------+-------+
+|     1 | sonal  | Solapur  |  42000 | sonal@gmai.com  |  NULL |
+|     2 | komal  | Kolhapur |  42000 | komal@gmai.com  |  NULL |
+|     3 | kajal  | Khanapur |  45000 | kajal@gmai.com  |  NULL |
+|     4 | hiral  | Jaipur   |  50000 | hiral@gmai.com  |  NULL |
+|     5 | bhakti | gujrat   |  55000 | bhakti@gmai.com |  NULL |
+|     6 | sakshi | Karntaka |  60000 | sakshi@gmai.com |  NULL |
+|     7 | soniya | satara   |  65000 | soniya@gmai.com |  NULL |
+|     8 | sanika | sangli   |  70000 | sanika@gmai.com |  NULL |
+|     9 | sejal  | pune     |  75000 | sejal@gmai.com  |  NULL |
+|    10 | sanaya | pune     |  80000 | sanaya@gmai.com |  NULL |
++-------+--------+----------+--------+-----------------+-------+
+10 rows in set (0.00 sec)
+
+mysql> insert into employeeDetails (mobNo)values(123456678);
+ERROR 1364 (HY000): Field 'empId' doesn't have a default value
+mysql> insert into employeeDetails (empId ,mobNo)values(1,123456678);
+ERROR 1364 (HY000): Field 'name' doesn't have a default value
+mysql> insert into employeeDetails (empId ,name,mobNo)values(1,"sonal",123456678);
+ERROR 1062 (23000): Duplicate entry '1' for key 'employeedetails.PRIMARY'
+mysql> select * from employeeDetails ORDERD BY ASC;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'BY ASC' at line 1
+mysql> select * from employeeDetails ORDERD BY name ASC;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'BY name ASC' at line 1
+mysql> select * from employeeDetails ORDER BY name ASC;
++-------+--------+----------+--------+-----------------+-------+
+| empId | name   | city     | salary | gmail           | mobNo |
++-------+--------+----------+--------+-----------------+-------+
+|     5 | bhakti | gujrat   |  55000 | bhakti@gmai.com |  NULL |
+|     4 | hiral  | Jaipur   |  50000 | hiral@gmai.com  |  NULL |
+|     3 | kajal  | Khanapur |  45000 | kajal@gmai.com  |  NULL |
+|     2 | komal  | Kolhapur |  42000 | komal@gmai.com  |  NULL |
+|     6 | sakshi | Karntaka |  60000 | sakshi@gmai.com |  NULL |
+|    10 | sanaya | pune     |  80000 | sanaya@gmai.com |  NULL |
+|     8 | sanika | sangli   |  70000 | sanika@gmai.com |  NULL |
+|     9 | sejal  | pune     |  75000 | sejal@gmai.com  |  NULL |
+|     1 | sonal  | Solapur  |  42000 | sonal@gmai.com  |  NULL |
+|     7 | soniya | satara   |  65000 | soniya@gmai.com |  NULL |
++-------+--------+----------+--------+-----------------+-------+
+10 rows in set (0.00 sec)
+
+mysql> select * from employeeDetails ORDER BY name DESC;
++-------+--------+----------+--------+-----------------+-------+
+| empId | name   | city     | salary | gmail           | mobNo |
++-------+--------+----------+--------+-----------------+-------+
+|     7 | soniya | satara   |  65000 | soniya@gmai.com |  NULL |
+|     1 | sonal  | Solapur  |  42000 | sonal@gmai.com  |  NULL |
+|     9 | sejal  | pune     |  75000 | sejal@gmai.com  |  NULL |
+|     8 | sanika | sangli   |  70000 | sanika@gmai.com |  NULL |
+|    10 | sanaya | pune     |  80000 | sanaya@gmai.com |  NULL |
+|     6 | sakshi | Karntaka |  60000 | sakshi@gmai.com |  NULL |
+|     2 | komal  | Kolhapur |  42000 | komal@gmai.com  |  NULL |
+|     3 | kajal  | Khanapur |  45000 | kajal@gmai.com  |  NULL |
+|     4 | hiral  | Jaipur   |  50000 | hiral@gmai.com  |  NULL |
+|     5 | bhakti | gujrat   |  55000 | bhakti@gmai.com |  NULL |
++-------+--------+----------+--------+-----------------+-------+
+10 rows in set (0.00 sec)
+
+mysql> select * from employeeDetails ORDER BY salary ASC;
++-------+--------+----------+--------+-----------------+-------+
+| empId | name   | city     | salary | gmail           | mobNo |
++-------+--------+----------+--------+-----------------+-------+
+|     1 | sonal  | Solapur  |  42000 | sonal@gmai.com  |  NULL |
+|     2 | komal  | Kolhapur |  42000 | komal@gmai.com  |  NULL |
+|     3 | kajal  | Khanapur |  45000 | kajal@gmai.com  |  NULL |
+|     4 | hiral  | Jaipur   |  50000 | hiral@gmai.com  |  NULL |
+|     5 | bhakti | gujrat   |  55000 | bhakti@gmai.com |  NULL |
+|     6 | sakshi | Karntaka |  60000 | sakshi@gmai.com |  NULL |
+|     7 | soniya | satara   |  65000 | soniya@gmai.com |  NULL |
+|     8 | sanika | sangli   |  70000 | sanika@gmai.com |  NULL |
+|     9 | sejal  | pune     |  75000 | sejal@gmai.com  |  NULL |
+|    10 | sanaya | pune     |  80000 | sanaya@gmai.com |  NULL |
++-------+--------+----------+--------+-----------------+-------+
+10 rows in set (0.00 sec)
+
+mysql> select * from employeeDetails LIMIT 5;
++-------+--------+----------+--------+-----------------+-------+
+| empId | name   | city     | salary | gmail           | mobNo |
++-------+--------+----------+--------+-----------------+-------+
+|     1 | sonal  | Solapur  |  42000 | sonal@gmai.com  |  NULL |
+|     2 | komal  | Kolhapur |  42000 | komal@gmai.com  |  NULL |
+|     3 | kajal  | Khanapur |  45000 | kajal@gmai.com  |  NULL |
+|     4 | hiral  | Jaipur   |  50000 | hiral@gmai.com  |  NULL |
+|     5 | bhakti | gujrat   |  55000 | bhakti@gmai.com |  NULL |
++-------+--------+----------+--------+-----------------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select * from employeeDetails LIMIT 5  OFFSET 10;
+Empty set (0.00 sec)
+
+mysql> select * from employeeDetails LIMIT 10 OFFSET 5;
++-------+--------+----------+--------+-----------------+-------+
+| empId | name   | city     | salary | gmail           | mobNo |
++-------+--------+----------+--------+-----------------+-------+
+|     6 | sakshi | Karntaka |  60000 | sakshi@gmai.com |  NULL |
+|     7 | soniya | satara   |  65000 | soniya@gmai.com |  NULL |
+|     8 | sanika | sangli   |  70000 | sanika@gmai.com |  NULL |
+|     9 | sejal  | pune     |  75000 | sejal@gmai.com  |  NULL |
+|    10 | sanaya | pune     |  80000 | sanaya@gmai.com |  NULL |
++-------+--------+----------+--------+-----------------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select gmail AS employee_gmail FROM employeeDetails;
++-----------------+
+| employee_gmail  |
++-----------------+
+| sonal@gmai.com  |
+| komal@gmai.com  |
+| kajal@gmai.com  |
+| hiral@gmai.com  |
+| bhakti@gmai.com |
+| sakshi@gmai.com |
+| soniya@gmai.com |
+| sanika@gmai.com |
+| sejal@gmai.com  |
+| sanaya@gmai.com |
++-----------------+
+10 rows in set (0.00 sec)
+
+mysql>
