@@ -1,0 +1,185 @@
+create database ECommerce_System;
+use Ecommerce_System;
+create table Customer_Info(order_id int PRIMARY KEY,custmoer_name varchar(60),city varchar (70),product_name varchar (90),category varchar (70),price decimal ,duantity int , order_date DATE,payment_mode varchar(70),status varchar(80));
+
+mysql> desc Customer_Info;
++---------------+---------------+------+-----+---------+-------+
+| Field         | Type          | Null | Key | Default | Extra |
++---------------+---------------+------+-----+---------+-------+
+| order_id      | int           | NO   | PRI | NULL    |       |
+| custmoer_name | varchar(60)   | YES  |     | NULL    |       |
+| city          | varchar(70)   | YES  |     | NULL    |       |
+| product_name  | varchar(90)   | YES  |     | NULL    |       |
+| category      | varchar(70)   | YES  |     | NULL    |       |
+| price         | decimal(10,0) | YES  |     | NULL    |       |
+| duantity      | int           | YES  |     | NULL    |       |
+| order_date    | date          | YES  |     | NULL    |       |
+| payment_mode  | varchar(70)   | YES  |     | NULL    |       |
+| status        | varchar(80)   | YES  |     | NULL    |       |
++---------------+---------------+------+-----+---------+-------+
+10 rows in set (0.01 sec)
+
+insert into Customer_Info(order_id,custmoer_name,city,product_name,category,price,duantity,order_date,payment_mode,status)values(1,'Sonal','Solapur','Laptop', 'Electronic',60000.0,2,'2023-4-24','upi','Delivered'),
+(2,'Payal','Kalburgi','Think like monk', 'Books',500.0,1,'2023-5-24','Cash','Pending'),
+(3,'Shruti','Pune','Mobile', 'Electronic',600000.0,2,'2023-5-24','Credit Card','Shipped'),
+(4,'Rashi','Solapur','Jeans', 'Cloths',6000.0,5,'2023-6-24','upi','Delivered'),
+(5,'sakshi','Dehuroad','Lipstick', 'MakeUp',60000.0,2,'2023-8-24','upi','Delivered'),
+(6,'Shradha','Satara','Watch', 'Electronic',7000.0,5,'2025-3-6','Credit Card','Pending'),
+(7,'Siya','Solapur','Shoes', 'Fashion',5000.0,2,'2024-4-24','Cash','Delivered'),
+(8,'Sonal','Mohol','Tshirt', 'Cloths',6000.0,1,'2023-4-24','upi','Delivered');
+
+--Display All orders Placed by customer from pune;
+select * from Customer_Info where city ='Pune';
++----------+---------------+------+--------------+------------+--------+----------+------------+--------------+---------+
+| order_id | custmoer_name | city | product_name | category   | price  | duantity | order_date | payment_mode | status  |
++----------+---------------+------+--------------+------------+--------+----------+------------+--------------+---------+
+|        3 | Shruti        | Pune | Mobile       | Electronic | 600000 |        2 | 2023-05-24 | Credit Card  | Shipped |
++----------+---------------+------+--------------+------------+--------+----------+------------+--------------+---------+
+1 row in set (0.00 sec)
+
+--Show all orders where price is greater than 5000;
+select * from Customer_Info Where price>5000;
++----------+---------------+----------+--------------+------------+--------+----------+------------+--------------+-----------+
+| order_id | custmoer_name | city     | product_name | category   | price  | duantity | order_date | payment_mode | status    |
++----------+---------------+----------+--------------+------------+--------+----------+------------+--------------+-----------+
+|        1 | Sonal         | Solapur  | Laptop       | Electronic |  60000 |        2 | 2023-04-24 | upi          | Delivered |
+|        3 | Shruti        | Pune     | Mobile       | Electronic | 600000 |        2 | 2023-05-24 | Credit Card  | Shipped   |
+|        4 | Rashi         | Solapur  | Jeans        | Cloths     |   6000 |        5 | 2023-06-24 | upi          | Delivered |
+|        5 | sakshi        | Dehuroad | Lipstick     | MakeUp     |  60000 |        2 | 2023-08-24 | upi          | Delivered |
+|        6 | Shradha       | Satara   | Watch        | Electronic |   7000 |        5 | 2025-03-06 | Credit Card  | Pending   |
+|        8 | Sonal         | Mohol    | Tshirt       | Cloths     |   6000 |        1 | 2023-04-24 | upi          | Delivered |
++----------+---------------+----------+--------------+------------+--------+----------+------------+--------------+-----------+
+6 rows in set (0.01 sec)
+
+--Find All order where payment mode is UPI;
+slect * from Customer_Info Where payment_mode='upi';
++----------+---------------+----------+--------------+------------+-------+----------+------------+--------------+-----------+
+| order_id | custmoer_name | city     | product_name | category   | price | duantity | order_date | payment_mode | status    |
++----------+---------------+----------+--------------+------------+-------+----------+------------+--------------+-----------+
+|        1 | Sonal         | Solapur  | Laptop       | Electronic | 60000 |        2 | 2023-04-24 | upi          | Delivered |
+|        4 | Rashi         | Solapur  | Jeans        | Cloths     |  6000 |        5 | 2023-06-24 | upi          | Delivered |
+|        5 | sakshi        | Dehuroad | Lipstick     | MakeUp     | 60000 |        2 | 2023-08-24 | upi          | Delivered |
+|        8 | Sonal         | Mohol    | Tshirt       | Cloths     |  6000 |        1 | 2023-04-24 | upi          | Delivered |
++----------+---------------+----------+--------------+------------+-------+----------+------------+--------------+-----------+
+
+--Display order where Status is Delivered?
+select * from Customer_Info Where status='Delivered';
++----------+---------------+----------+--------------+------------+-------+----------+------------+--------------+-----------+
+| order_id | custmoer_name | city     | product_name | category   | price | duantity | order_date | payment_mode | status    |
++----------+---------------+----------+--------------+------------+-------+----------+------------+--------------+-----------+
+|        1 | Sonal         | Solapur  | Laptop       | Electronic | 60000 |        2 | 2023-04-24 | upi          | Delivered |
+|        4 | Rashi         | Solapur  | Jeans        | Cloths     |  6000 |        5 | 2023-06-24 | upi          | Delivered |
+|        5 | sakshi        | Dehuroad | Lipstick     | MakeUp     | 60000 |        2 | 2023-08-24 | upi          | Delivered |
+|        7 | Siya          | Solapur  | Shoes        | Fashion    |  5000 |        2 | 2024-04-24 | Cash         | Delivered |
+|        8 | Sonal         | Mohol    | Tshirt       | Cloths     |  6000 |        1 | 2023-04-24 | upi          | Delivered |
++----------+---------------+----------+--------------+------------+-------+----------+------------+--------------+-----------+
+
+-- Show oredre where quantity is between 2 and 5;
+select * from Customer_Info Where duantity>=2 And duantity<=5;
++----------+---------------+----------+--------------+------------+--------+----------+------------+--------------+-----------+
+| order_id | custmoer_name | city     | product_name | category   | price  | duantity | order_date | payment_mode | status    |
++----------+---------------+----------+--------------+------------+--------+----------+------------+--------------+-----------+
+|        1 | Sonal         | Solapur  | Laptop       | Electronic |  60000 |        2 | 2023-04-24 | upi          | Delivered |
+|        3 | Shruti        | Pune     | Mobile       | Electronic | 600000 |        2 | 2023-05-24 | Credit Card  | Shipped   |
+|        4 | Rashi         | Solapur  | Jeans        | Cloths     |   6000 |        5 | 2023-06-24 | upi          | Delivered |
+|        5 | sakshi        | Dehuroad | Lipstick     | MakeUp     |  60000 |        2 | 2023-08-24 | upi          | Delivered |
+|        6 | Shradha       | Satara   | Watch        | Electronic |   7000 |        5 | 2025-03-06 | Credit Card  | Pending   |
+|        7 | Siya          | Solapur  | Shoes        | Fashion    |   5000 |        2 | 2024-04-24 | Cash         | Delivered |
++----------+---------------+----------+--------------+------------+--------+----------+------------+--------------+-----------+
+
+--Display order where category is 'Electronic' OR Clothing;
+select * from Customer_Info where category ='Electronic' OR category='Cloths';
++----------+---------------+---------+--------------+------------+--------+----------+------------+--------------+-----------+
+| order_id | custmoer_name | city    | product_name | category   | price  | duantity | order_date | payment_mode | status    |
++----------+---------------+---------+--------------+------------+--------+----------+------------+--------------+-----------+
+|        1 | Sonal         | Solapur | Laptop       | Electronic |  60000 |        2 | 2023-04-24 | upi          | Delivered |
+|        3 | Shruti        | Pune    | Mobile       | Electronic | 600000 |        2 | 2023-05-24 | Credit Card  | Shipped   |
+|        4 | Rashi         | Solapur | Jeans        | Cloths     |   6000 |        5 | 2023-06-24 | upi          | Delivered |
+|        6 | Shradha       | Satara  | Watch        | Electronic |   7000 |        5 | 2025-03-06 | Credit Card  | Pending   |
+|        8 | Sonal         | Mohol   | Tshirt       | Cloths     |   6000 |        1 | 2023-04-24 | upi          | Delivered |
++----------+---------------+---------+--------------+------------+--------+----------+------------+--------------+-----------+
+
+--Find the orders where customer name starts with R ?
+mysql> select * from customer_Info Where custmoer_name LIKE 'r%';
++----------+---------------+---------+--------------+----------+-------+----------+------------+--------------+-----------+
+| order_id | custmoer_name | city    | product_name | category | price | duantity | order_date | payment_mode | status    |
++----------+---------------+---------+--------------+----------+-------+----------+------------+--------------+-----------+
+|        4 | Rashi         | Solapur | Jeans        | Cloths   |  6000 |        5 | 2023-06-24 | upi          | Delivered |
++----------+---------------+---------+--------------+----------+-------+----------+------------+--------------+-----------+
+
+--Show order where customer name where product name contains 'Jeans';
+select * from Customer_Info where product_name LIKE '%Jeans%';
++----------+---------------+---------+--------------+----------+-------+----------+------------+--------------+-----------+
+| order_id | custmoer_name | city    | product_name | category | price | duantity | order_date | payment_mode | status    |
++----------+---------------+---------+--------------+----------+-------+----------+------------+--------------+-----------+
+|        4 | Rashi         | Solapur | Jeans        | Cloths   |  6000 |        5 | 2023-06-24 | upi          | Delivered |
++----------+---------------+---------+--------------+----------+-------+----------+------------+--------------+-----------+
+
+--Display All orders  sorted by Price in Descending Order ?
+mysql> select * from Customer_Info ORDER BY price DESC;
++----------+---------------+----------+-----------------+------------+--------+----------+------------+--------------+-----------+
+| order_id | custmoer_name | city     | product_name    | category   | price  | duantity | order_date | payment_mode | status    |
++----------+---------------+----------+-----------------+------------+--------+----------+------------+--------------+-----------+
+|        3 | Shruti        | Pune     | Mobile          | Electronic | 600000 |        2 | 2023-05-24 | Credit Card  | Shipped   |
+|        1 | Sonal         | Solapur  | Laptop          | Electronic |  60000 |        2 | 2023-04-24 | upi          | Delivered |
+|        5 | sakshi        | Dehuroad | Lipstick        | MakeUp     |  60000 |        2 | 2023-08-24 | upi          | Delivered |
+|        6 | Shradha       | Satara   | Watch           | Electronic |   7000 |        5 | 2025-03-06 | Credit Card  | Pending   |
+|        4 | Rashi         | Solapur  | Jeans           | Cloths     |   6000 |        5 | 2023-06-24 | upi          | Delivered |
+|        8 | Sonal         | Mohol    | Tshirt          | Cloths     |   6000 |        1 | 2023-04-24 | upi          | Delivered |
+|        7 | Siya          | Solapur  | Shoes           | Fashion    |   5000 |        2 | 2024-04-24 | Cash         | Delivered |
+|        2 | Payal         | Kalburgi | Think like monk | Books      |    500 |        1 | 2023-05-24 | Cash         | Pending   |
++----------+---------------+----------+-----------------+------------+--------+----------+------------+--------------+-----------+
+
+--show order sorted by order_date (latest first)?
+mysql> select * from Customer_Info ORDER BY order_date DESC;
++----------+---------------+----------+-----------------+------------+--------+----------+------------+--------------+-----------+
+| order_id | custmoer_name | city     | product_name    | category   | price  | duantity | order_date | payment_mode | status    |
++----------+---------------+----------+-----------------+------------+--------+----------+------------+--------------+-----------+
+|        6 | Shradha       | Satara   | Watch           | Electronic |   7000 |        5 | 2025-03-06 | Credit Card  | Pending   |
+|        7 | Siya          | Solapur  | Shoes           | Fashion    |   5000 |        2 | 2024-04-24 | Cash         | Delivered |
+|        5 | sakshi        | Dehuroad | Lipstick        | MakeUp     |  60000 |        2 | 2023-08-24 | upi          | Delivered |
+|        4 | Rashi         | Solapur  | Jeans           | Cloths     |   6000 |        5 | 2023-06-24 | upi          | Delivered |
+|        2 | Payal         | Kalburgi | Think like monk | Books      |    500 |        1 | 2023-05-24 | Cash         | Pending   |
+|        3 | Shruti        | Pune     | Mobile          | Electronic | 600000 |        2 | 2023-05-24 | Credit Card  | Shipped   |
+|        1 | Sonal         | Solapur  | Laptop          | Electronic |  60000 |        2 | 2023-04-24 | upi          | Delivered |
+|        8 | Sonal         | Mohol    | Tshirt          | Cloths     |   6000 |        1 | 2023-04-24 | upi          | Delivered |
++----------+---------------+----------+-----------------+------------+--------+----------+------------+--------------+-----------+
+
+-- Find the total Revenue(Price * Quantity) ?
+select Sum(price*duantity) AS totalRevenue from Customer_info;
++--------------+
+| totalRevenue |
++--------------+
+|      1521500 |
++--------------+
+
+--FindThe avg price of products ?
+select AVG(price) AS avg_price FROM Customer_Info;
++------------+
+| avg_price  |
++------------+
+| 93062.5000 |
++------------+
+
+--count how many order palces?
+select COUNT(*) AS total_orders FROM Customer_Info;
++--------------+
+| total_orders |
++--------------+
+|            8 |
++--------------+
+
+
+--count how many order delivered?
+select * from Customer_Info WHERE status = 'Delivered';
++----------+---------------+----------+--------------+------------+-------+----------+------------+--------------+-----------+
+| order_id | custmoer_name | city     | product_name | category   | price | duantity | order_date | payment_mode | status    |
++----------+---------------+----------+--------------+------------+-------+----------+------------+--------------+-----------+
+|        1 | Sonal         | Solapur  | Laptop       | Electronic | 60000 |        2 | 2023-04-24 | upi          | Delivered |
+|        4 | Rashi         | Solapur  | Jeans        | Cloths     |  6000 |        5 | 2023-06-24 | upi          | Delivered |
+|        5 | sakshi        | Dehuroad | Lipstick     | MakeUp     | 60000 |        2 | 2023-08-24 | upi          | Delivered |
+|        7 | Siya          | Solapur  | Shoes        | Fashion    |  5000 |        2 | 2024-04-24 | Cash         | Delivered |
+|        8 | Sonal         | Mohol    | Tshirt       | Cloths     |  6000 |        1 | 2023-04-24 | upi          | Delivered |
++----------+---------------+----------+--------------+------------+-------+----------+------------+--------------+-----------+
+
+
