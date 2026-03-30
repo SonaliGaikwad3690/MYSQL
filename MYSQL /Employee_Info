@@ -1,0 +1,179 @@
+--> create database Employee;
+--> use Employee;
+--> create table Employee_Info (id int PRIMARY KEY auto_increment ,name varchar(60) job_title varchar(60), salary bigInt NULL, deptName varchar (80) UNIQUE KEY); 
++-----------+-------------+------+-----+---------+----------------+
+| Field     | Type        | Null | Key | Default | Extra          |
++-----------+-------------+------+-----+---------+----------------+
+| id        | int         | NO   | PRI | NULL    | auto_increment |
+| name      | varchar(60) | YES  |     | NULL    |                |
+| job_title | varchar(60) | YES  |     | NULL    |                |
+| salary    | bigint      | YES  |     | NULL    |                |
+| deptName  | varchar(80) | YES  | UNI | NULL    |                |
++-----------+-------------+------+-----+---------+----------------+
+
+--> insert at least 5 records ?
+insert into Employee_Info (name,job_title, salary, deptName) values('Sonal','Software Developer',50000,'IT');
+insert into Employee_Info (name,job_title, salary, deptName) values('Rashi','HR Manager', 45000, 'HR');
+insert into Employee_Info (name,job_title, salary, deptName) values('Payal','Tester',40000,'QA');
+insert into Employee_Info (name,job_title, salary, deptName) values('Shruti','Accountant', 47000, 'Finance');
+insert into Employee_Info (name,job_title, salary, deptName) values('Soniya','Team Lead', 65000, 'Development');
+insert into Employee_Info (name,job_title, salary, deptName) values('Rutuja','PPE', 80000, 'MNC');
+
++----+--------+--------------------+--------+-------------+
+| id | name   | job_title          | salary | deptName    |
++----+--------+--------------------+--------+-------------+
+|  1 | Sonal  | Software Developer |  50000 | IT          |
+|  3 | Rashi  | HR Manager         |  45000 | HR          |
+|  4 | Payal  | Tester             |  40000 | QA          |
+|  5 | Shruti | Accountant         |  47000 | Finance     |
+|  6 | Soniya | Team Lead          |  65000 | Development |
+|  7 | Rutuja | PPE                |  80000 | MNC         |
++----+--------+--------------------+--------+-------------+
+
+--> delete employee whose id =7?
+delete from Employee_Info where id = 7;
+mysql> select * from Employee_Info;
++----+--------+--------------------+--------+-------------+
+| id | name   | job_title          | salary | deptName    |
++----+--------+--------------------+--------+-------------+
+|  1 | Sonal  | Software Developer |  50000 | IT          |
+|  3 | Rashi  | HR Manager         |  45000 | HR          |
+|  4 | Payal  | Tester             |  40000 | QA          |
+|  5 | Shruti | Accountant         |  47000 | Finance     |
+|  6 | Soniya | Team Lead          |  65000 | Development |
++----+--------+--------------------+--------+-------------+
+ 
+--> update salary of employee_Info 'Rutuja' to 70000;
+update Employee_Info set salary = 70000 WHERE name ='Sonal';
++----+--------+--------------------+--------+-------------+
+| id | name   | job_title          | salary | deptName    |
++----+--------+--------------------+--------+-------------+
+|  1 | Sonal  | Software Developer |  70000 | IT          |
+|  3 | Rashi  | HR Manager         |  45000 | HR          |
+|  4 | Payal  | Tester             |  40000 | QA          |
+|  5 | Shruti | Accountant         |  47000 | Finance     |
+|  6 | Soniya | Team Lead          |  65000 | Development |
++----+--------+--------------------+--------+-------------+
+
+--> Add a New Cumn Email?
+Alter Table Employee_Info ADD email varchar(90);
+mysql> desc Employee_Info;
++-----------+-------------+------+-----+---------+----------------+
+| Field     | Type        | Null | Key | Default | Extra          |
++-----------+-------------+------+-----+---------+----------------+
+| id        | int         | NO   | PRI | NULL    | auto_increment |
+| name      | varchar(60) | YES  |     | NULL    |                |
+| job_title | varchar(60) | YES  |     | NULL    |                |
+| salary    | bigint      | YES  |     | NULL    |                |
+| deptName  | varchar(80) | YES  | UNI | NULL    |                |
+| email     | varchar(90) | YES  |     | NULL    |                |
++-----------+-------------+------+-----+---------+----------------+
+
+--> Display All Employee with salary > 45000?
+select * from Employee_Info WHERE salary > 45000;
++----+--------+--------------------+--------+-------------+-------+
+| id | name   | job_title          | salary | deptName    | email |
++----+--------+--------------------+--------+-------------+-------+
+|  1 | Sonal  | Software Developer |  70000 | IT          | NULL  |
+|  5 | Shruti | Accountant         |  47000 | Finance     | NULL  |
+|  6 | Soniya | Team Lead          |  65000 | Development | NULL  |
++----+--------+--------------------+--------+-------------+-------+
+
+--> Display Employee whose name start with 'S'?
+select * from Employee_Info WHERE name LIKE'S%';
+mysql> select * from Employee_Info WHERE name LIKE'S%';
++----+--------+--------------------+--------+-------------+-------+
+| id | name   | job_title          | salary | deptName    | email |
++----+--------+--------------------+--------+-------------+-------+
+|  1 | Sonal  | Software Developer |  70000 | IT          | NULL  |
+|  5 | Shruti | Accountant         |  47000 | Finance     | NULL  |
+|  6 | Soniya | Team Lead          |  65000 | Development | NULL  |
++----+--------+--------------------+--------+-------------+-------+
+
+--> Display All Employees sorted by salary DESC?
+select * from Employee_Info ORDER BY salary DESC; 
+mysql> select * from Employee_Info ORDER BY salary DESC;
++----+--------+--------------------+--------+-------------+-------+
+| id | name   | job_title          | salary | deptName    | email |
++----+--------+--------------------+--------+-------------+-------+
+|  1 | Sonal  | Software Developer |  70000 | IT          | NULL  |
+|  6 | Soniya | Team Lead          |  65000 | Development | NULL  |
+|  5 | Shruti | Accountant         |  47000 | Finance     | NULL  |
+|  3 | Rashi  | HR Manager         |  45000 | HR          | NULL  |
+|  4 | Payal  | Tester             |  40000 | QA          | NULL  |
++----+--------+--------------------+--------+-------------+-------+
+
+--> Show only unique job titles?
+select DISTINCT job_title FROM Employee_Info;  
++--------------------+
+| job_title          |
++--------------------+
+| Software Developer |
+| HR Manager         |
+| Tester             |
+| Accountant         |
+| Team Lead          |
++--------------------+
+
+-->Show only unique key in Table?
+SHOW INDEX FROM Employee_Info WHERE Non_unique = 0;
++---------------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+------------+
+| Table         | Non_unique | Key_name | Seq_in_index | Column_name | Collation | Cardinality | Sub_part | Packed | Null | Index_type | Comment | Index_comment | Visible | Expression |
++---------------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+------------+
+| employee_info |          0 | PRIMARY  |            1 | id          | A         |           5 |     NULL |   NULL |      | BTREE      |         |               | YES     | NULL       |
+| employee_info |          0 | deptName |            1 | deptName    | A         |           5 |     NULL |   NULL | YES  | BTREE      |         |               | YES     | NULL       |
++---------------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+------------+
+
+-->Display Top 3 highest paid Employees?
+Select * from Employee_Info ORDER BY salary DESC limit 3;
++----+--------+--------------------+--------+-------------+-------+
+| id | name   | job_title          | salary | deptName    | email |
++----+--------+--------------------+--------+-------------+-------+
+|  1 | Sonal  | Software Developer |  70000 | IT          | NULL  |
+|  6 | Soniya | Team Lead          |  65000 | Development | NULL  |
+|  5 | Shruti | Accountant         |  47000 | Finance     | NULL  |
++----+--------+--------------------+--------+-------------+-------+
+
+-->Find total salary of All Employeese?
+select sum(salary) AS total_salary from Employee_Info;
++--------------+
+| total_salary |
++--------------+
+|       267000 |
++--------------+
+
+--> Find avg of all Employees?
+select avg(salary) as avg_salary from Employee_Info;
++------------+
+| avg_salary |
++------------+
+| 53400.0000 |
++------------+
+
+--> Find Highest salary ?
+select * from Employee_Info ORDER BY salary DESC limit 1;
++----+-------+--------------------+--------+----------+-------+
+| id | name  | job_title          | salary | deptName | email |
++----+-------+--------------------+--------+----------+-------+
+|  1 | Sonal | Software Developer |  70000 | IT       | NULL  |
++----+-------+--------------------+--------+----------+-------+
+
+--> Count Number of employees;
+select Count(*) from Employee_Info;
++----------+
+| Count(*) |
++----------+
+|        5 |
++----------+
+
+--> Display Total Salary Dept Wise?
+select deptName, SUM(salary) AS total_salary FROM Employee_Info GROUP BY deptName;
++-------------+--------------+
+| deptName    | total_salary |
++-------------+--------------+
+| Development |        65000 |
+| Finance     |        47000 |
+| HR          |        45000 |
+| IT          |        70000 |
+| QA          |        40000 |
++-------------+--------------+
