@@ -1,0 +1,145 @@
+Joins :-
+
+create database Company;
+
+use Company;
+
+Create TABLE departments (dept_id INT PRIMARY KEY, dept_name VARCHAR(50));
+desc departments;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| dept_id   | int         | NO   | PRI | NULL    |       |
+| dept_name | varchar(50) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+
+
+Create table Employees (emp_Id int PRIMARY KEY, name varchar(60), dept_Id int , manager_Id int , FOREIGN KEY (dept_Id) REFERENCES departments(dept_Id));
+desc employees;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| emp_Id     | int         | NO   | PRI | NULL    |       |
+| name       | varchar(60) | YES  |     | NULL    |       |
+| dept_Id    | int         | YES  | MUL | NULL    |       |
+| manager_Id | int         | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+4
+
+insert into departments(dept_id,dept_Name)values(1,'HR'),(2,'Java Dev'),(3,'Testing'),(4,'Marketing'),(5,NULL);
+select * from departments;
++---------+-----------+
+| dept_id | dept_name |
++---------+-----------+
+|       1 | HR        |
+|       2 | Java Dev  |
+|       3 | Testing   |
+|       4 | Marketing |
+|       5 | NULL      |
++---------+-----------+
+
+
+insert into employees(emp_id,name,manager_id,dept_id )values(1001,'om',1007,1),(1002,'ram',NULL,2),(1003,'om',1005,3),(1004,'sahil',1001,5),(1005,'shyam',1005,2);
+select * from employees;
++--------+-------+---------+------------+
+| emp_Id | name  | dept_Id | manager_Id |
++--------+-------+---------+------------+
+|   1001 | om    |       1 |       1007 |
+|   1002 | ram   |       2 |       NULL |
+|   1003 | om    |       3 |       1005 |
+|   1004 | sahil |       5 |       1001 |
+|   1005 | shyam |       2 |       1005 |
++--------+-------+---------+------------+
+
+Query :-INNER JOIN
+Query : select employees.name , departments.dept_name from Employees INNER JOIN departments ON employees.dept_Id = departments.dept_Id;
++-------+-----------+
+| name  | dept_name |
++-------+-----------+
+| om    | HR        |
+| ram   | Java Dev  |
+| om    | Testing   |
+| sahil | NULL      |
+| shyam | Java Dev  |
++-------+-----------+
+
+Query : LEFT JOIN
+Query : select employees.name , departments.dept_name from Employees LEFT JOIN departments ON employees.dept_Id = departments.dept_Id;
++-------+-----------+
+| name  | dept_name |
++-------+-----------+
+| om    | HR        |
+| ram   | Java Dev  |
+| om    | Testing   |
+| sahil | NULL      |
+| shyam | Java Dev  |
++-------+-----------+
+
+Query : - RIGHT JOIN
+Query : select employees.name , departments.dept_name from Employees RIGHT JOIN departments ON employees.dept_Id = departments.dept_Id;
++-------+-----------+
+| name  | dept_name |
++-------+-----------+
+| om    | HR        |
+| ram   | Java Dev  |
+| shyam | Java Dev  |
+| om    | Testing   |
+| NULL  | Marketing |
+| sahil | NULL      |
++-------+-----------+
+
+UNION :-
+SELECT employees.name, departments.dept_name FROM employees LEFT JOIN departments ON employees.dept_id = departments.dept_id UNION SELECT employees.name, departments.dept_name FROM employees RIGHT JOIN departments ON employees.dept_id = departments.dept_id;
++-------+-----------+
+| name  | dept_name |
++-------+-----------+
+| om    | HR        |
+| ram   | Java Dev  |
+| om    | Testing   |
+| sahil | NULL      |
+| shyam | Java Dev  |
+| NULL  | Marketing |
++-------+-----------+
+
+Query : - CROSS JOIN 
+select employees.name , departments.dept_name from Employees CROSS JOIN departments;
++-------+-----------+
+| name  | dept_name |
++-------+-----------+
+| shyam | HR        |
+| sahil | HR        |
+| om    | HR        |
+| ram   | HR        |
+| om    | HR        |
+| shyam | Java Dev  |
+| sahil | Java Dev  |
+| om    | Java Dev  |
+| ram   | Java Dev  |
+| om    | Java Dev  |
+| shyam | Testing   |
+| sahil | Testing   |
+| om    | Testing   |
+| ram   | Testing   |
+| om    | Testing   |
+| shyam | Marketing |
+| sahil | Marketing |
+| om    | Marketing |
+| ram   | Marketing |
+| om    | Marketing |
+| shyam | NULL      |
+| sahil | NULL      |
+| om    | NULL      |
+| ram   | NULL      |
+| om    | NULL      |
++-------+-----------+
+
+Query :-SELF JOIN 
+Query : select e1.name as Employees , e2.name as manager, from employees e1 INNER JOIN employees e2 ON e1.manager_id = e2.emp_id;
++----------+---------+
+| Employee | Manager |
++----------+---------+
+| om       | shyam   |
+| sahil    | om      |
+| shyam    | shyam   |
++----------+---------+
+
