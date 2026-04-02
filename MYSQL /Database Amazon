@@ -1,0 +1,267 @@
+Create database Amazon;
+Use Amazon;
+Create table Orders(order_Id int PRIMARY KEY,orderName varchar(70),Order_date DATE ,status varchar(60));
+mysql> desc orders;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| order_Id   | int         | NO   | PRI | NULL    |       |
+| orderName  | varchar(70) | YES  |     | NULL    |       |
+| Order_date | date        | YES  |     | NULL    |       |
+| status     | varchar(60) | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+
+Create table Product (product_Id int PRIMARY KEY, productName varchar(80), price bigInt, quantity  int , manufacturing_Date DATE, type varchar(70));
+mysql> desc product;
++--------------------+-------------+------+-----+---------+-------+
+| Field              | Type        | Null | Key | Default | Extra |
++--------------------+-------------+------+-----+---------+-------+
+| product_Id         | int         | NO   | PRI | NULL    |       |
+| productName        | varchar(80) | YES  |     | NULL    |       |
+| price              | bigint      | YES  |     | NULL    |       |
+| quantity           | int         | YES  |     | NULL    |       |
+| manufacturing_Date | date        | YES  |     | NULL    |       |
+| type               | varchar(70) | YES  |     | NULL    |       |
++--------------------+-------------+------+-----+---------+-------+
+
+Create table Customer(customer_Id int PRIMARY KEY, custName varchar(80), email varchar(90), Mobno bigInt, address varchar(80), country varchar(80), state varchar (70), paymentMode varchar(60), status varchar (80), order_Id int , product_Id int,
+ FOREIGN KEY (order_Id) REFERENCES Orders(order_Id),
+ FOREIGN KEY (product_Id) REFERENCES Product(product_Id));
+mysql> desc Customer;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| customer_Id | int         | NO   | PRI | NULL    |       |
+| custName    | varchar(80) | YES  |     | NULL    |       |
+| email       | varchar(90) | YES  |     | NULL    |       |
+| Mobno       | bigint      | YES  |     | NULL    |       |
+| address     | varchar(80) | YES  |     | NULL    |       |
+| country     | varchar(80) | YES  |     | NULL    |       |
+| state       | varchar(70) | YES  |     | NULL    |       |
+| paymentMode | varchar(60) | YES  |     | NULL    |       |
+| status      | varchar(80) | YES  |     | NULL    |       |
+| order_Id    | int         | YES  | MUL | NULL    |       |
+| product_Id  | int         | YES  | MUL | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+
+INSERT INTO Orders VALUES
+(1,'Laptop Order','2024-01-10','Delivered'),
+(2,'Mobile Order','2024-01-12','Pending'),
+(3,'TV Order','2024-01-15','Shipped'),
+(4,'Headphone Order','2024-01-18','Delivered'),
+(5,'Watch Order','2024-01-20','Pending'),
+(6,'Camera Order','2024-01-22','Shipped'),
+(7,'Tablet Order','2024-01-25','Delivered'),
+(8,'Printer Order','2024-01-28','Pending');
+mysql> select * from orders;
++----------+-----------------+------------+-----------+
+| order_Id | orderName       | Order_date | status    |
++----------+-----------------+------------+-----------+
+|        1 | Laptop Order    | 2024-01-10 | Delivered |
+|        2 | Mobile Order    | 2024-01-12 | Pending   |
+|        3 | TV Order        | 2024-01-15 | Shipped   |
+|        4 | Headphone Order | 2024-01-18 | Delivered |
+|        5 | Watch Order     | 2024-01-20 | Pending   |
+|        6 | Camera Order    | 2024-01-22 | Shipped   |
+|        7 | Tablet Order    | 2024-01-25 | Delivered |
+|        8 | Printer Order   | 2024-01-28 | Pending   |
++----------+-----------------+------------+-----------+
+
+INSERT INTO Product VALUES
+(101,'Laptop',55000,1,'2023-12-10','Electronics'),
+(102,'Mobile',25000,2,'2023-11-05','Electronics'),
+(103,'TV',45000,1,'2023-10-01','Electronics'),
+(104,'Headphones',3000,3,'2023-09-15','Accessories'),
+(105,'Smart Watch',8000,2,'2023-08-20','Wearable'),
+(106,'Camera',65000,1,'2023-07-10','Electronics'),
+(107,'Tablet',30000,1,'2023-06-18','Electronics'),
+(108,'Printer',12000,2,'2023-05-25','Electronics');
+mysql> select * from Product;
++------------+-------------+-------+----------+--------------------+-------------+
+| product_Id | productName | price | quantity | manufacturing_Date | type        |
++------------+-------------+-------+----------+--------------------+-------------+
+|        101 | Laptop      | 55000 |        1 | 2023-12-10         | Electronics |
+|        102 | Mobile      | 25000 |        2 | 2023-11-05         | Electronics |
+|        103 | TV          | 45000 |        1 | 2023-10-01         | Electronics |
+|        104 | Headphones  |  3000 |        3 | 2023-09-15         | Accessories |
+|        105 | Smart Watch |  8000 |        2 | 2023-08-20         | Wearable    |
+|        106 | Camera      | 65000 |        1 | 2023-07-10         | Electronics |
+|        107 | Tablet      | 30000 |        1 | 2023-06-18         | Electronics |
+|        108 | Printer     | 12000 |        2 | 2023-05-25         | Electronics |
++------------+-------------+-------+----------+--------------------+-------------+
+
+
+--> INSERT INTO Customer VALUES
+(1,'Sonali','sonali@gmail.com',9876543210,'Pune','India','Maharashtra','UPI','Active',1,101),
+
+(2,'Amit','amit@gmail.com',9876543211,'Mumbai','India','Maharashtra','Card','Active',2,102),
+
+(3,'Rahul','rahul@gmail.com',9876543212,'Delhi','India','Delhi','Cash','Active',3,103),
+
+(4,'Priya','priya@gmail.com',9876543213,'Nagpur','India','Maharashtra','UPI','Active',4,104),
+
+(5,'Rohit','rohit@gmail.com',9876543214,'Bangalore','India','Karnataka','Card','Active',5,105),
+
+(6,'Neha','neha@gmail.com',9876543215,'Hyderabad','India','Telangana','Cash','Active',6,106),
+
+(7,'Vikas','vikas@gmail.com',9876543216,'Chennai','India','Tamil Nadu','UPI','Active',7,107),
+
+(8,'Pooja','pooja@gmail.com',9876543217,'Pune','India','Maharashtra','Card','Active',8,108);
+
+mysql> select * from Customer;
++-------------+----------+------------------+------------+-----------+---------+-------------+-------------+--------+----------+------------+
+| customer_Id | custName | email            | Mobno      | address   | country | state       | paymentMode | status | order_Id | product_Id |
++-------------+----------+------------------+------------+-----------+---------+-------------+-------------+--------+----------+------------+
+|           1 | Sonali   | sonali@gmail.com | 9876543210 | Pune      | India   | Maharashtra | UPI         | Active |        1 |        101 |
+|           2 | Amit     | amit@gmail.com   | 9876543211 | Mumbai    | India   | Maharashtra | Card        | Active |        2 |        102 |
+|           3 | Rahul    | rahul@gmail.com  | 9876543212 | Delhi     | India   | Delhi       | Cash        | Active |        3 |        103 |
+|           4 | Priya    | priya@gmail.com  | 9876543213 | Nagpur    | India   | Maharashtra | UPI         | Active |        4 |        104 |
+|           5 | Rohit    | rohit@gmail.com  | 9876543214 | Bangalore | India   | Karnataka   | Card        | Active |        5 |        105 |
+|           6 | Neha     | neha@gmail.com   | 9876543215 | Hyderabad | India   | Telangana   | Cash        | Active |        6 |        106 |
+|           7 | Vikas    | vikas@gmail.com  | 9876543216 | Chennai   | India   | Tamil Nadu  | UPI         | Active |        7 |        107 |
+|           8 | Pooja    | pooja@gmail.com  | 9876543217 | Pune      | India   | Maharashtra | Card        | Active |        8 |        108 |
++-------------+----------+------------------+------------+-----------+---------+-------------+-------------+--------+----------+------------+
+
+
+INNER JOINS:-
+--> SELECT  c.custName, o.orderName, p.productName, p.price FROM Customer c INNER JOIN Orders o  ON c.order_Id = o.order_Id INNER JOIN
+Product p ON c.product_Id = p.product_Id;
+
++----------+-----------------+-------------+-------+
+| custName | orderName       | productName | price |
++----------+-----------------+-------------+-------+
+| Sonali   | Laptop Order    | Laptop      | 55000 |
+| Amit     | Mobile Order    | Mobile      | 25000 |
+| Rahul    | TV Order        | TV          | 45000 |
+| Priya    | Headphone Order | Headphones  |  3000 |
+| Rohit    | Watch Order     | Smart Watch |  8000 |
+| Neha     | Camera Order    | Camera      | 65000 |
+| Vikas    | Tablet Order    | Tablet      | 30000 |
+| Pooja    | Printer Order   | Printer     | 12000 |
++----------+-----------------+-------------+-------+
+
+--> LEFT JOIN
+SELECT  c.custName, o.orderName, p.productName
+FROM Customer c LEFT JOIN Orders o ON c.order_Id = o.order_Id LEFT JOIN Product p ON c.product_Id = p.product_Id;
++----------+-----------------+-------------+
+| custName | orderName       | productName |
++----------+-----------------+-------------+
+| Sonali   | Laptop Order    | Laptop      |
+| Amit     | Mobile Order    | Mobile      |
+| Rahul    | TV Order        | TV          |
+| Priya    | Headphone Order | Headphones  |
+| Rohit    | Watch Order     | Smart Watch |
+| Neha     | Camera Order    | Camera      |
+| Vikas    | Tablet Order    | Tablet      |
+| Pooja    | Printer Order   | Printer     |
++----------+-----------------+-------------+
+
+--> RIGHT JOIN
+SELECT  c.custName, o.orderName, p.productName
+FROM Customer c RIGHT JOIN Orders o ON c.order_Id = o.order_Id RIGHT JOIN Product p ON c.product_Id = p.product_Id;
++----------+-----------------+-------------+
+| custName | orderName       | productName |
++----------+-----------------+-------------+
+| Sonali   | Laptop Order    | Laptop      |
+| Amit     | Mobile Order    | Mobile      |
+| Rahul    | TV Order        | TV          |
+| Priya    | Headphone Order | Headphones  |
+| Rohit    | Watch Order     | Smart Watch |
+| Neha     | Camera Order    | Camera      |
+| Vikas    | Tablet Order    | Tablet      |
+| Pooja    | Printer Order   | Printer     |
++----------+-----------------+-------------+
+
+--> CROSS JOIN 
+SELECT  c.custName, p.productName FROM Customer c CROSS JOIN Product p;
++----------+-------------+
+| custName | productName |
++----------+-------------+
+| Pooja    | Laptop      |
+| Vikas    | Laptop      |
+| Neha     | Laptop      |
+| Rohit    | Laptop      |
+| Priya    | Laptop      |
+| Rahul    | Laptop      |
+| Amit     | Laptop      |
+| Sonali   | Laptop      |
+| Pooja    | Mobile      |
+| Vikas    | Mobile      |
+| Neha     | Mobile      |
+| Rohit    | Mobile      |
+| Priya    | Mobile      |
+| Rahul    | Mobile      |
+| Amit     | Mobile      |
+| Sonali   | Mobile      |
+| Pooja    | TV          |
+| Vikas    | TV          |
+| Neha     | TV          |
+| Rohit    | TV          |
+| Priya    | TV          |
+| Rahul    | TV          |
+| Amit     | TV          |
+| Sonali   | TV          |
+| Pooja    | Headphones  |
+| Vikas    | Headphones  |
+| Neha     | Headphones  |
+| Rohit    | Headphones  |
+| Priya    | Headphones  |
+| Rahul    | Headphones  |
+| Amit     | Headphones  |
+| Sonali   | Headphones  |
+| Pooja    | Smart Watch |
+| Vikas    | Smart Watch |
+| Neha     | Smart Watch |
+| Rohit    | Smart Watch |
+| Priya    | Smart Watch |
+| Rahul    | Smart Watch |
+| Amit     | Smart Watch |
+| Sonali   | Smart Watch |
+| Pooja    | Camera      |
+| Vikas    | Camera      |
+| Neha     | Camera      |
+| Rohit    | Camera      |
+| Priya    | Camera      |
+| Rahul    | Camera      |
+| Amit     | Camera      |
+| Sonali   | Camera      |
+| Pooja    | Tablet      |
+| Vikas    | Tablet      |
+| Neha     | Tablet      |
+| Rohit    | Tablet      |
+| Priya    | Tablet      |
+| Rahul    | Tablet      |
+| Amit     | Tablet      |
+| Sonali   | Tablet      |
+| Pooja    | Printer     |
+| Vikas    | Printer     |
+| Neha     | Printer     |
+| Rohit    | Printer     |
+| Priya    | Printer     |
+| Rahul    | Printer     |
+| Amit     | Printer     |
+| Sonali   | Printer     |
++----------+-------------+
+
+--> SELF JOIN
+SELECT  c1.custName, c2.custName, c1.state
+FROM Customer c1 JOIN Customer c2 ON c1.state = c2.state AND c1.customer_Id <> c2.customer_Id;
++----------+----------+-------------+
+| custName | custName | state       |
++----------+----------+-------------+
+| Pooja    | Sonali   | Maharashtra |
+| Priya    | Sonali   | Maharashtra |
+| Amit     | Sonali   | Maharashtra |
+| Pooja    | Amit     | Maharashtra |
+| Priya    | Amit     | Maharashtra |
+| Sonali   | Amit     | Maharashtra |
+| Pooja    | Priya    | Maharashtra |
+| Amit     | Priya    | Maharashtra |
+| Sonali   | Priya    | Maharashtra |
+| Priya    | Pooja    | Maharashtra |
+| Amit     | Pooja    | Maharashtra |
+| Sonali   | Pooja    | Maharashtra |
++----------+----------+-------------+
+
+exit;
+
