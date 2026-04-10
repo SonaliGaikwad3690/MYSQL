@@ -1,0 +1,294 @@
+nter password: *********
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 16
+Server version: 8.0.45 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2026, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create database MyInfo;
+Query OK, 1 row affected (0.13 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| amazon             |
+| company            |
+| ecommerce_system   |
+| employee           |
+| information_schema |
+| myinfo             |
+| mysql              |
+| performance_schema |
+| student            |
+| sys                |
++--------------------+
+10 rows in set (0.06 sec)
+
+mysql> use database Myinfo;
+ERROR 1049 (42000): Unknown database 'database'
+mysql> use Myinfo;
+Database changed
+mysql> desc MuyInfo;
+ERROR 1146 (42S02): Table 'myinfo.muyinfo' doesn't exist
+mysql> desc MyInfo;
+ERROR 1146 (42S02): Table 'myinfo.myinfo' doesn't exist
+mysql> desc MyInfo;
+ERROR 1146 (42S02): Table 'myinfo.myinfo' doesn't exist
+mysql> create MyInfo (name varchar(60) Primary Key,Mob_No bigInt;Roll_No int;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'MyInfo (name varchar(60) Primary Key,Mob_No bigInt' at line 1
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Roll_No int' at line 1
+mysql> create MyInfo (id int NOT NULL ,name varchar(60) Primary Key,Mob_No bigInt;Roll_No int;email varchar(80));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'MyInfo (id int NOT NULL ,name varchar(60) Primary Key,Mob_No bigInt' at line 1
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Roll_No int' at line 1
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'email varchar(80))' at line 1
+mysql> create MyInfo (id int NOT NULL ,name varchar(60) Primary Key,Mob_No bigInt,Roll_No int,email varchar(80));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'MyInfo (id int NOT NULL ,name varchar(60) Primary Key,Mob_No bigInt,Roll_No int,' at line 1
+mysql> create table MyInfo (id int NOT NULL ,name varchar(60) Primary Key,Mob_No bigInt,Roll_No int,email varchar(80));
+Query OK, 0 rows affected (0.11 sec)
+
+mysql> desc MyInfo;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| id      | int         | NO   |     | NULL    |       |
+| name    | varchar(60) | NO   | PRI | NULL    |       |
+| Mob_No  | bigint      | YES  |     | NULL    |       |
+| Roll_No | int         | YES  |     | NULL    |       |
+| email   | varchar(80) | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+5 rows in set (0.02 sec)
+
+mysql> insert into MyInfo (id,name,Mob_No,Roll_No,email) value(1,"Sonal",187837483,12,sonal@gmial.com),(2,"Kajal",13983747,13,kajal@gamil.com);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '@gmial.com),(2,"Kajal",13983747,13,kajal@gamil.com)' at line 1
+mysql> insert into MyInfo (id,name,Mob_No,Roll_No,email) values(1,"Sonal",187837483,12,"sonal@gmial.com"),(2,"Kajal",13983747,13,"kajal@gamil.com");
+Query OK, 2 rows affected (0.03 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from Myinfo;
++----+-------+-----------+---------+-----------------+
+| id | name  | Mob_No    | Roll_No | email           |
++----+-------+-----------+---------+-----------------+
+|  2 | Kajal |  13983747 |      13 | kajal@gamil.com |
+|  1 | Sonal | 187837483 |      12 | sonal@gmial.com |
++----+-------+-----------+---------+-----------------+
+2 rows in set (0.00 sec)
+
+mysql> upadate Myinfo set roll_no=14 where id=2;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'upadate Myinfo set roll_no=14 where id=2' at line 1
+mysql> update Myinfo set roll_no=14 where id=2;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from Myinfo;
++----+-------+-----------+---------+-----------------+
+| id | name  | Mob_No    | Roll_No | email           |
++----+-------+-----------+---------+-----------------+
+|  2 | Kajal |  13983747 |      14 | kajal@gamil.com |
+|  1 | Sonal | 187837483 |      12 | sonal@gmial.com |
++----+-------+-----------+---------+-----------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from Myinfo ORDER BY Roll_no desc;
++----+-------+-----------+---------+-----------------+
+| id | name  | Mob_No    | Roll_No | email           |
++----+-------+-----------+---------+-----------------+
+|  2 | Kajal |  13983747 |      14 | kajal@gamil.com |
+|  1 | Sonal | 187837483 |      12 | sonal@gmial.com |
++----+-------+-----------+---------+-----------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from Myinfo ORDER BY Roll_no asc;
++----+-------+-----------+---------+-----------------+
+| id | name  | Mob_No    | Roll_No | email           |
++----+-------+-----------+---------+-----------------+
+|  1 | Sonal | 187837483 |      12 | sonal@gmial.com |
+|  2 | Kajal |  13983747 |      14 | kajal@gamil.com |
++----+-------+-----------+---------+-----------------+
+2 rows in set (0.00 sec)
+
+mysql> select count(*) as total_count name from myInfo;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'name from myInfo' at line 1
+mysql> select count(*) as total_count name from myInfo;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'name from myInfo' at line 1
+mysql> SELECT COUNT(*) AS total_count FROM MyInfo;
++-------------+
+| total_count |
++-------------+
+|           2 |
++-------------+
+1 row in set (0.02 sec)
+
+mysql> select count(*) as total_count from myInfo  GROUP BY name;
++-------------+
+| total_count |
++-------------+
+|           1 |
+|           1 |
++-------------+
+2 rows in set (0.00 sec)
+
+mysql> ALTER TABLE MyInfo
+    -> ADD salary VARCHAR(100);
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc myinfo;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| id      | int          | NO   |     | NULL    |       |
+| name    | varchar(60)  | NO   | PRI | NULL    |       |
+| Mob_No  | bigint       | YES  |     | NULL    |       |
+| Roll_No | int          | YES  |     | NULL    |       |
+| email   | varchar(80)  | YES  |     | NULL    |       |
+| salary  | varchar(100) | YES  |     | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> ALTER TABLE MyInfo ADD salary bigInt;
+ERROR 1060 (42S21): Duplicate column name 'salary'
+mysql> ALTER TABLE MyInfo DROP salary varchar(100);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'varchar(100)' at line 1
+mysql> ALTER TABLE MyInfo DROP Default varchar(100);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Default varchar(100)' at line 1
+mysql> ALTER TABLE MyInfo DROP Default;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Default' at line 1
+mysql> ALTER TABLE MyInfo DROP Experince int;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'int' at line 1
+mysql> ALTER TABLE MyInfo ADD Experince int;
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc myinfo;
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| id        | int          | NO   |     | NULL    |       |
+| name      | varchar(60)  | NO   | PRI | NULL    |       |
+| Mob_No    | bigint       | YES  |     | NULL    |       |
+| Roll_No   | int          | YES  |     | NULL    |       |
+| email     | varchar(80)  | YES  |     | NULL    |       |
+| salary    | varchar(100) | YES  |     | NULL    |       |
+| Experince | int          | YES  |     | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+mysql> ALTER TABLE MyInfo
+    -> ADD Age INT,
+    ->
+    ->
+    ->
+    ->
+    ->
+    ->
+    ->
+    ->
+    ->
+    ->
+    -> ALTER TABLE MyInfo ADD age int;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'TABLE MyInfo ADD age int' at line 13
+mysql> ALTER TABLE MyInfo ADD age int;
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc myinfo;
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| id        | int          | NO   |     | NULL    |       |
+| name      | varchar(60)  | NO   | PRI | NULL    |       |
+| Mob_No    | bigint       | YES  |     | NULL    |       |
+| Roll_No   | int          | YES  |     | NULL    |       |
+| email     | varchar(80)  | YES  |     | NULL    |       |
+| salary    | varchar(100) | YES  |     | NULL    |       |
+| Experince | int          | YES  |     | NULL    |       |
+| age       | int          | YES  |     | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+
+mysql> ALTER TABLE MyInfo DROP age int;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'int' at line 1
+mysql> ALTER TABLE MyInfo DROP column age int;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'int' at line 1
+mysql> ALTER TABLE MyInfo DROP column age;
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE MyInfo DROP column salary;
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc myinfo;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| id        | int         | NO   |     | NULL    |       |
+| name      | varchar(60) | NO   | PRI | NULL    |       |
+| Mob_No    | bigint      | YES  |     | NULL    |       |
+| Roll_No   | int         | YES  |     | NULL    |       |
+| email     | varchar(80) | YES  |     | NULL    |       |
+| Experince | int         | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> insert into myinfo (experince)values (4),(6);
+ERROR 1364 (HY000): Field 'id' doesn't have a default value
+mysql> insert into myinfo (id ,experince)values (1,4),(2,6);
+ERROR 1364 (HY000): Field 'name' doesn't have a default value
+mysql> insert into myinfo (id ,name,experince)values (1,"KAjal",4),(2,"Sonal",6);
+ERROR 1062 (23000): Duplicate entry 'KAjal' for key 'myinfo.PRIMARY'
+mysql> insert into myinfo (id ,name,experince)values (1,"Kajal",4),(2,"Sonal",6);
+ERROR 1062 (23000): Duplicate entry 'Kajal' for key 'myinfo.PRIMARY'
+mysql> INSERT INTO MyInfo (id,name,Experince)
+    -> VALUES
+    -> (1,'Sonal',4),
+    -> (2,'Kajal',6);
+ERROR 1062 (23000): Duplicate entry 'Sonal' for key 'myinfo.PRIMARY'
+mysql> UPDATE MyInfo
+    -> SET Experince = 4
+    -> WHERE id = 1;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE MyInfo
+    -> SET Experince = 6
+    -> WHERE id = 2;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from myinfo;
++----+-------+-----------+---------+-----------------+-----------+
+| id | name  | Mob_No    | Roll_No | email           | Experince |
++----+-------+-----------+---------+-----------------+-----------+
+|  2 | Kajal |  13983747 |      14 | kajal@gamil.com |         6 |
+|  1 | Sonal | 187837483 |      12 | sonal@gmial.com |         4 |
++----+-------+-----------+---------+-----------------+-----------+
+2 rows in set (0.00 sec)
+
+mysql> select * from myInfo where experince >4;
++----+-------+----------+---------+-----------------+-----------+
+| id | name  | Mob_No   | Roll_No | email           | Experince |
++----+-------+----------+---------+-----------------+-----------+
+|  2 | Kajal | 13983747 |      14 | kajal@gamil.com |         6 |
++----+-------+----------+---------+-----------------+-----------+
+1 row in set (0.00 sec)
+
+mysql> select * from myInfo where NOT NULL;
+Empty set (0.00 sec)
+
+mysql> select * from myInfo where NULL;
+Empty set (0.00 sec)
+
+mysql> select * from myInfo where  experince NOT NULL;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'NULL' at line 1
+mysql> select * from myInfo where  experince NULL;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'NULL' at line 1
+mysql> ^A^C
+mysql> ^A
