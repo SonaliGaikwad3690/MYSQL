@@ -1,0 +1,127 @@
+Enter password: *********
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 506
+Server version: 8.0.45 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2026, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| amazon             |
+| attendance         |
+| batch426           |
+| ecommerce_system   |
+| information_schema |
+| jobportal          |
+| leave_db           |
+| myinfo             |
+| mysql              |
+| performance_schema |
+| student            |
+| sys                |
++--------------------+
+12 rows in set (0.11 sec)
+
+mysql> use batch426;
+Database changed
+mysql> show tables;
++---------------------+
+| Tables_in_batch426  |
++---------------------+
+| address             |
+| applicant           |
+| attendance_record   |
+| attendance_students |
+| book                |
+| course              |
+| customer            |
+| department          |
+| employee            |
+| job                 |
+| job_application     |
+| laptop              |
+| myinfo              |
+| orders              |
+| passport            |
+| person              |
+| student             |
+| student_course      |
+| student_db          |
+| student_info        |
+| students            |
+| studrecord          |
+| subject             |
+| user                |
+| users               |
++---------------------+
+25 rows in set (0.03 sec)
+
+mysql> select * from employee;
++----+----------------+------------------+------------+------------+-----------------------+----------+--------------+------------+----------+
+| id | emp_name       | email            | mobile     | department | designation           | salary   | joining_date | city       | status   |
++----+----------------+------------------+------------+------------+-----------------------+----------+--------------+------------+----------+
+|  1 | Sonali Gaikwad | sonali@gmail.com | 9876543210 | IT         | Java Developer        | 65000.00 | 2024-01-15   | Pune       | Active   |
+|  2 | Rahul Sharma   | rahul@gmail.com  | 9876543211 | HR         | HR Executive          | 45000.00 | 2023-06-10   | Mumbai     | Active   |
+|  3 | Priya Patil    | priya@gmail.com  | 9876543212 | Finance    | Accountant            | 55000.00 | 2022-08-20   | Nagpur     | Active   |
+|  4 | Amit Kumar     | amit@gmail.com   | 9876543213 | IT         | Spring Boot Developer | 75000.00 | 2024-02-05   | Pune       | Active   |
+|  5 | Sneha Joshi    | sneha@gmail.com  | 9876543214 | Testing    | QA Engineer           | 50000.00 | 2023-03-12   | Nashik     | Active   |
+|  6 | Rohit Verma    | rohit@gmail.com  | 9876543215 | IT         | Full Stack Developer  | 85000.00 | 2022-11-18   | Pune       | Deactive |
+|  7 | Pooja Singh    | pooja@gmail.com  | 9876543216 | Marketing  | Marketing Executive   | 48000.00 | 2024-04-22   | Mumbai     | Active   |
+|  8 | Vikas Jadhav   | vikas@gmail.com  | 9876543217 | Support    | Technical Support     | 40000.00 | 2023-07-14   | Kolhapur   | Active   |
+|  9 | Neha Kulkarni  | neha@gmail.com   | 9876543218 | IT         | Software Engineer     | 70000.00 | 2024-05-01   | Pune       | Active   |
+| 10 | Karan Deshmukh | karan@gmail.com  | 9876543219 | Admin      | Administrator         | 52000.00 | 2021-09-09   | Aurangabad | Active   |
++----+----------------+------------------+------------+------------+-----------------------+----------+--------------+------------+----------+
+10 rows in set (0.02 sec)
+
+mysql> select department , sum(salary) as total_salary from employee GROUP BY department;
++------------+--------------+
+| department | total_salary |
++------------+--------------+
+| IT         |    295000.00 |
+| HR         |     45000.00 |
+| Finance    |     55000.00 |
+| Testing    |     50000.00 |
+| Marketing  |     48000.00 |
+| Support    |     40000.00 |
+| Admin      |     52000.00 |
++------------+--------------+
+7 rows in set (0.01 sec)
+
+mysql> select department , max(salary)as Max_Salary from employee GROUP BY department;
++------------+------------+
+| department | Max_Salary |
++------------+------------+
+| IT         |   85000.00 |
+| HR         |   45000.00 |
+| Finance    |   55000.00 |
+| Testing    |   50000.00 |
+| Marketing  |   48000.00 |
+| Support    |   40000.00 |
+| Admin      |   52000.00 |
++------------+------------+
+7 rows in set (0.00 sec)
+
+mysql> select department ,count(*) AS Total_Count from employee GROUP BY department;
++------------+-------------+
+| department | Total_Count |
++------------+-------------+
+| IT         |           4 |
+| HR         |           1 |
+| Finance    |           1 |
+| Testing    |           1 |
+| Marketing  |           1 |
+| Support    |           1 |
+| Admin      |           1 |
++------------+-------------+
+7 rows in set (0.00 sec)
+
+mysql> ^A^C
+mysql>
